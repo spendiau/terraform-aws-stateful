@@ -157,6 +157,21 @@ variable "max_size" {
   description = "Max number of instances"
 }
 
+variable "alb_access_logging_enabled" {
+  default     = false
+  description = "Enable ALB access logging"
+}
+
+variable "alb_access_logging_bucket" {
+  default     = ""
+  description = "S3 bucket to store ALB access logs"
+}
+
+variable "alb_access_logging_prefix" {
+  default     = ""
+  description = "S3 bucket prefix to use for ALB access logs"
+}
+
 variable "tags" {
   default     = {}
   description = "Additional resource tags"

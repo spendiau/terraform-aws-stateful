@@ -9,6 +9,12 @@ resource "aws_lb" "alb" {
     aws_security_group.alb[0].id,
   ]
 
+  access_logs {
+    enabled = var.alb_access_logging_enabled
+    bucket  = var.alb_access_logging_bucket
+    prefix  = var.alb_access_logging_prefix
+  }
+
   idle_timeout = 400
 
   tags = {
