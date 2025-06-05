@@ -152,6 +152,11 @@ variable "cwlog_files" {
   description = "List of log files to stream to cloudwatch logs (leave empty to disable the agent) - only for Amazon Linux 2 AMIs"
 }
 
+variable "max_size" {
+  default     = 1
+  description = "Max number of instances"
+}
+
 variable "tags" {
   default     = {}
   description = "Additional resource tags"
