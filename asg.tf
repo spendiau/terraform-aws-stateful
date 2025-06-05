@@ -1,33 +1,11 @@
 resource "aws_autoscaling_group" "asg" {
   count               = var.instance_count
   name                = "${var.name}-${count.index}"
-  min_size            = 1
+  min_size            = var.min_size
   max_size            = var.max_size
   vpc_zone_identifier = [var.instances_subnet_ids[count.index]]
 
-  enabled_metrics     = [
-    "GroupAndWarmPoolDesiredCapacity",
-    "GroupAndWarmPoolTotalCapacity",
-    "GroupDesiredCapacity",
-    "GroupInServiceCapacity",
-    "GroupInServiceInstances",
-    "GroupMaxSize",
-    "GroupMinSize",
-    "GroupPendingCapacity",
-    "GroupPendingInstances",
-    "GroupStandbyCapacity",
-    "GroupStandbyInstances",
-    "GroupTerminatingCapacity",
-    "GroupTerminatingInstances",
-    "GroupTotalCapacity",
-    "GroupTotalInstances",
-    "WarmPoolDesiredCapacity",
-    "WarmPoolMinSize",
-    "WarmPoolPendingCapacity",
-    "WarmPoolTerminatingCapacity",
-    "WarmPoolTotalCapacity",
-    "WarmPoolWarmedCapacity"
-  ]
+  enabled_metrics     = var.enabled_metrics
 
   launch_template {
     id      = var.launch_template_id != "" ? var.launch_template_id : aws_launch_template.default.id 
